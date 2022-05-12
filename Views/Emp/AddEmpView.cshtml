@@ -1,0 +1,41 @@
+﻿@model Emp
+@{
+    ViewBag.Title = "Add new Employee";
+}
+
+<h2>Add new Employee</h2>
+
+<form asp-controller="Emp" asp-action="AddEmp" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Ename">Name</label>
+        <input asp-for="Ename" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Job">Job</label>
+        <input asp-for="Job" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Sal">Salary</label>
+        <input asp-for="Sal" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DeptID">Department </label>
+        <select asp-for="DeptID" class="form-control">
+
+            <option value="">select a Department </option>
+            @foreach (Dept d in ViewBag.Dept)
+            {
+                <option value="@d.DeptID">@d.Dname</option>
+            }
+        </select>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Add</button>
+    <a asp-controller="Emp" asp-action="Index" class="btn btn-primary">Cancel</a>
+</form>

@@ -1,0 +1,21 @@
+﻿@model Loc
+
+@{
+    ViewBag.Title = "Location";
+}
+
+<h2>Location</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr> <th>Location ID</th> <th>City</th>  <th>Street</th>   </tr>
+    </thead>
+    <tbody>
+      
+            <tr>
+                <td>@Model.LocID</td>
+                <td>@Model.City</td>
+                <td>@Model.Street</td>
+            </tr>
+    </tbody>
+</table>

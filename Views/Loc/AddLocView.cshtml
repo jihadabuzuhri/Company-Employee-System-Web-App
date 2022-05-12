@@ -1,0 +1,25 @@
+﻿@model Loc
+@{
+    ViewBag.Title = "Add new Location";
+}
+
+<h2>Add new Location</h2>
+
+<form asp-controller="Loc" asp-action="AddLoc" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="City">City</label>
+        <input asp-for="City" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Street">Street</label>
+        <input asp-for="Street" class="form-control">
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary">Add</button>
+    <a asp-controller="Loc" asp-action="Index" class="btn btn-primary">Cancel</a>
+</form>

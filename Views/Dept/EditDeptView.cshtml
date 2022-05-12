@@ -1,0 +1,33 @@
+﻿@model Dept
+@{
+    ViewBag.Title = "Edit Department";
+}
+
+<h2>Edit Department</h2>
+
+<form asp-controller="Dept" asp-action="Edit"  method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Dname">Name</label>
+        <input asp-for="Dname" value="@Model.Dname" class="form-control">
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="LocID">Location </label>
+        <select asp-for="LocID" class="form-control">
+
+            <option value="@Model.LocID"> @Model.loc.City  </option>
+            @foreach (Loc l in ViewBag.Loc)
+            {
+                <option value="@l.LocID">@l.City</option>
+            }
+        </select>
+    </div>
+
+    <input type="hidden" asp-for="DeptID" />
+
+    <button type="submit" class="btn btn-primary">Edit</button>
+    <a asp-controller="Dept" asp-action="Index" class="btn btn-primary">Cancel</a>
+</form>

@@ -1,0 +1,59 @@
+﻿@model List<Dept>
+
+@{
+    ViewBag.Title = "Department";
+}
+
+
+
+<div>
+
+    <h4>Search for an Department</h4>
+    <form method="get">
+
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" name="SearchNameKey">
+        </div>
+
+        <button asp-controller="Dept" asp-action="SearchName" type="submit" class="btn btn-primary">Search</button>
+        <a asp-controller="Dept" asp-action="Index" class="btn btn-primary">Cancel</a>
+    </form>
+
+
+</div>
+
+
+
+<br />
+<br />
+
+
+
+
+<h2>Department List</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>  <th>Department ID</th>  <th>Department Name</th> <th>Location ID</th> <th>Quick Action</th> </tr>
+    </thead>
+    <tbody>
+        @foreach (var Dept in Model)
+        {
+        <tr>
+            <td>@Dept.DeptID</td>
+            <td>@Dept.Dname</td>
+            <td> <a href="/loc/findloc/@Dept.LocID"> @Dept.LocID    </a>    </td>
+            <td>   <a href="/Dept/Delete/@Dept.DeptID "> Delete </a> || <a href="/Dept/Edit/@Dept.DeptID "> Edit </a> </td>
+
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<br />
+<br />
+<a asp-controller="Dept" asp-action="AddDept" class="btn btn-primary">Add new Department</a>
+

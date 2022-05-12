@@ -1,0 +1,81 @@
+﻿@model List<Emp>
+
+@{
+    ViewBag.Title = "Employee";
+}
+
+
+<div>
+
+    <h4>Search for an Employee</h4>
+    <form method="get">
+
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" name="SearchNameKey">
+        </div>
+
+        <button asp-controller="Emp" asp-action="SearchName" type="submit" class="btn btn-primary">Search</button>
+        <a asp-controller="Emp" asp-action="Index" class="btn btn-primary">Cancel</a>
+    </form>
+
+
+</div>
+
+
+<br />
+<br />
+
+
+
+<h2>Employee List</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr> <th>ID</th>   <th>Name</th> <th>job</th> <th>Salary</th> <th>Department ID</th> <th>Quick Action</th> </tr>
+    </thead>
+    <tbody>
+        @foreach (var Emp in Model)
+        {
+        <tr>
+            <td>@Emp.EmpID</td>
+            <td>@Emp.Ename</td>
+            <td>@Emp.Job</td>
+
+            @if (Context.Session.GetInt32("Password") == @Emp.EmpID || Context.Session.GetString("UserName").Equals("Admin"))
+            {
+
+                <td>@Emp.Sal</td>
+            }
+            else
+            {
+
+                <td> **** </td>
+
+            }
+
+
+            <td> <a href="/Dept/findDept/@Emp.DeptID">  @Emp.DeptID    </a>    </td>
+            @if (Context.Session.GetInt32("Password") == @Emp.EmpID || Context.Session.GetString("UserName").Equals("Admin"))
+            {
+
+                <td>   <a href="/Emp/Delete/@Emp.EmpID "> Delete </a> ||  <a href="/Emp/Edit/@Emp.EmpID "> Edit </a>   </td>
+            }
+            else
+            {
+
+                <td> Delete || Edit </td>
+
+            }
+        </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<br />
+
+@if (Context.Session.GetString("UserName").Equals("Admin"))
+{
+    <a asp-controller="Emp" asp-action="AddEmp" class="btn btn-primary">Add new Employee</a>
+}

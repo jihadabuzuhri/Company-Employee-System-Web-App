@@ -1,0 +1,22 @@
+﻿@model Dept
+
+@{
+    ViewBag.Title = "Department";
+}
+
+<h2>Department: </h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>  <th>Department ID</th>  <th>Department Name</th> <th>Location ID</th>  </tr>
+    </thead>
+    <tbody>
+       
+            <tr>
+                <td>@Model.DeptID</td>
+                <td>@Model.Dname</td>
+                <td> <a href="/loc/findloc/@Model.LocID"> @Model.LocID    </a>    </td>
+
+            </tr>
+    </tbody>
+</table>
